@@ -1,0 +1,30 @@
+{
+  "name": "level-historical-json",
+  "version": "0.0.0",
+  "description": "",
+  "main": "level-historical-json.js",
+  "dependencies": {
+    "endpoint": "^0.4.2",
+    "level-sublevel": "^5.2.0",
+    "level-sublevel-stream": "^0.1.0",
+    "node-time-uuid": "^0.1.4",
+    "run-series": "^1.0.2"
+  },
+  "devDependencies": {
+    "level-test": "^1.6.3",
+    "tap": "^0.4.11"
+  },
+  "scripts": {
+    "test": "tap test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ellell/level-historical-json.git"
+  },
+  "author": "Lisa Övermyr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ellell/level-historical-json/issues"
+  },
+  "homepage": "https://github.com/ellell/level-historical-json"
+}
