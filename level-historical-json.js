@@ -17,6 +17,9 @@ LHJ.prototype.put = function (obj, callback) {
     , ops = []
 
   Object.keys(obj).forEach(function (key, i) {
+    if (key === 'key')
+      return
+
     var value = {}
     value[key] = obj[key]
 
@@ -80,6 +83,64 @@ LHJ.prototype.get = function (query, callback) {
     if (err) return callback(err)
 
     tasks = subkeys.map(getLatestValues)
+    series(tasks, callback)
+  })
+}
+
+LHJ.prototype.getHistorical = function (query, callback) {
+  var self = this
+    , tasks = []
+    , getHistoricalValues
+
+  if (typeof query === 'function') {
+    callback = query
+    query = {}
+  }
+
+  getHistoricalValues = function (subkey) {
+    return function (callback) {
+      var subdb = Sublevel(self.db).sublevel(subkey, { valueEncoding: 'json' })
+        , obj = {}
+
+      subdb.createReadStream()
+        .pipe(endpoint({ objectMode: true }, function (err, objParts) {
+          if (err) return callback(err)
+
+          var values = {}
+            , changes = []
+
+          for (var i = 0;  objParts.length > i; i++) {
+
+            var partKey = objParts[i].key
+              , partValue = objParts[i].value
+              , partProp = Object.keys(partValue)[0]
+
+            if (values[partProp] !== undefined)
+              changes.push({
+                from: values[partProp]
+                , to: partValue[partProp]
+                , property: partProp
+                , at: new ObjectId(objParts[i].key).getDate()
+              })
+
+            values[partProp] = partValue[partProp]
+          }
+
+          if (changes.length)
+            obj = {
+              key: subkey
+              , changes: changes
+            }
+
+          callback(null, obj)
+        }))
+    }
+  }
+
+  this._getSubKeys(query, function (err, subkeys) {
+    if (err) return callback(err)
+
+    tasks = subkeys.map(getHistoricalValues)
     series(tasks, callback)
   })
 }
