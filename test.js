@@ -4,14 +4,6 @@ var test = require('tap').test
 
   , Service = require('./level-historical-json')
 
-
-function createObj() {
-  return {
-    title: 'title'
-    , description: 'description...'
-  }
-}
-
 test('should be able to save and get data', function (t) {
   var service = Service(db())
     , tasks = []

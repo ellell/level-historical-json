@@ -8,13 +8,13 @@ var endpoint = require('endpoint')
     if (!(this instanceof LHJ))
       return new LHJ(db)
 
-    this.db = db;
+    this.db = db
   }
 
 LHJ.prototype.put = function (obj, callback) {
   var subKey = obj.key || new ObjectId()
     , db = Sublevel(this.db).sublevel(subKey, { valueEncoding: 'json' })
-    , ops = [];
+    , ops = []
 
   Object.keys(obj).forEach(function (key, i) {
     var value = {}
