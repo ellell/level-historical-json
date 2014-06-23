@@ -1,7 +1,7 @@
 {
   "name": "level-historical-json",
   "version": "0.0.1",
-  "description": "",
+  "description": "Keep a history of all the changes of a JSON document.",
   "main": "level-historical-json.js",
   "dependencies": {
     "endpoint": "^0.4.2",
@@ -26,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/ellell/level-historical-json/issues"
   },
-  "homepage": "https://github.com/ellell/level-historical-json"
+  "homepage": "https://github.com/ellell/level-historical-json",
+  "stability": "unstable"
 }
