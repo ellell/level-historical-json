@@ -1,6 +1,6 @@
 {
   "name": "level-historical-json",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Keep a history of all the changes of a JSON document.",
   "main": "level-historical-json.js",
   "dependencies": {
