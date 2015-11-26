@@ -6,10 +6,6 @@ Keep a history of all the changes of a JSON document.
 
 [![NPM](https://nodei.co/npm-dl/level-historical-json.png)](https://nodei.co/npm/level-historical-json/)
 
-## Stability
-
-Unstable: Expect patches and features, possible api changes.
-
 ## Installation
 
 ```
